@@ -62,29 +62,31 @@ export default function HomeCard({
   };
 
   return (
-    <article className="property-card clickable">
-      {/* Price-first design - True Cost Badge */}
-      <div className="property-true-cost">
-        ${(trueCost / 1000).toFixed(0)}K
+    <article className="property-card">
+      {/* True Cost Badge - HUGE & Prominent */}
+      <div className="true-cost-badge">
+        <div className="true-cost-value">${(trueCost / 1000).toFixed(0)}K</div>
+        <div className="true-cost-label">True Cost</div>
       </div>
       
       {/* Savings Badge */}
-      <div className="property-savings">
+      <div className="savings-badge">
         Save ${(savings / 1000).toFixed(0)}K
       </div>
 
+      {/* Incentive Timer - If Expiring Soon */}
+      {hasExpiringIncentives && (
+        <div className="incentive-timer urgent">
+          ⏰ Incentives Expiring Soon!
+        </div>
+      )}
+
       {/* Photo Section */}
-      <div className="home-card__photo" style={{
-        position: 'relative',
-        height: '280px',
-        background: 'var(--gray-200)',
-        overflow: 'hidden'
-      }}>
+      <div className="property-image">
         {photoUrl ? (
           <img 
             src={photoUrl} 
             alt={`${address} - ${community} by ${builder}`}
-            className="property-image"
             loading="lazy"
           />
         ) : (
@@ -94,70 +96,52 @@ export default function HomeCard({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'var(--gray-400)'
+            color: 'var(--gray-400)',
+            background: 'var(--gray-100)'
           }}>
             <svg style={{ width: '64px', height: '64px' }} fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
             </svg>
           </div>
         )}
-        
-        {/* Status Badge */}
-        <div className="home-card__status" style={{
-          position: 'absolute',
-          bottom: 'var(--space-3)',
-          left: 'var(--space-3)',
-          padding: 'var(--space-1) var(--space-2)',
-          background: 'var(--success)',
-          color: 'var(--white)',
-          fontSize: 'var(--font-xs)',
-          fontWeight: '500',
-          borderRadius: 'var(--radius-full)',
-          zIndex: 'var(--z-tooltip)'
-        }}>
-          {status}
-        </div>
       </div>
 
       {/* Content Section */}
-      <div className="property-details">
+      <div className="property-content">
         {/* Monthly Payment - Prominent Display */}
         <div className="property-monthly">
-          <strong className="stat-value">${monthlyPayment.toLocaleString()}</strong>/month
+          ${monthlyPayment.toLocaleString()}
         </div>
+        <div className="property-monthly-label">/month</div>
         
         {/* Header */}
-        <header className="home-card__header" style={{
-          marginBottom: 'var(--space-4)'
+        <h3 style={{
+          fontSize: 'var(--font-lg)',
+          fontWeight: '600',
+          color: 'var(--gray-900)',
+          marginBottom: 'var(--space-1)',
+          lineHeight: '1.3'
         }}>
-          <h3 style={{
-            fontSize: 'var(--font-lg)',
-            fontWeight: '600',
-            color: 'var(--gray-900)',
-            marginBottom: 'var(--space-1)',
-            lineHeight: '1.3'
-          }}>
-            {address}
-          </h3>
-          <p style={{
-            fontSize: 'var(--font-sm)',
-            color: 'var(--gray-600)',
-            margin: '0'
-          }}>
-            {community} by {builder}
-          </p>
-          <p style={{
-            fontSize: 'var(--font-xs)',
-            color: 'var(--gray-500)',
-            margin: 'var(--space-1) 0 0 0'
-          }}>
-            MLS# {mlsNumber}
-          </p>
-        </header>
+          {address}
+        </h3>
+        <p style={{
+          fontSize: 'var(--font-sm)',
+          color: 'var(--gray-600)',
+          margin: '0 0 var(--space-1) 0'
+        }}>
+          {community} by {builder}
+        </p>
+        <p style={{
+          fontSize: 'var(--font-xs)',
+          color: 'var(--gray-500)',
+          margin: '0 0 var(--space-md) 0'
+        }}>
+          MLS# {mlsNumber}
+        </p>
 
         {/* Price Section */}
-        <div className="home-card__pricing" style={{
-          marginBottom: 'var(--space-4)'
+        <div style={{
+          marginBottom: 'var(--space-md)'
         }}>
           <div style={{
             display: 'flex',
@@ -191,70 +175,29 @@ export default function HomeCard({
         </div>
 
         {/* Property Details */}
-        <div className="home-card__details" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 'var(--space-4)',
-          marginBottom: 'var(--space-4)',
-          textAlign: 'center'
-        }}>
+        <div className="property-details">
           <div>
-            <div style={{
-              fontSize: 'var(--font-lg)',
-              fontWeight: '600',
-              color: 'var(--gray-900)'
-            }}>
+            <div style={{ fontWeight: '600', color: 'var(--gray-900)' }}>
               {bedrooms}
             </div>
-            <div style={{
-              fontSize: 'var(--font-xs)',
-              color: 'var(--gray-600)'
-            }}>
-              Beds
-            </div>
+            <div style={{ fontSize: 'var(--font-xs)' }}>Beds</div>
           </div>
           <div>
-            <div style={{
-              fontSize: 'var(--font-lg)',
-              fontWeight: '600',
-              color: 'var(--gray-900)'
-            }}>
+            <div style={{ fontWeight: '600', color: 'var(--gray-900)' }}>
               {bathrooms}
             </div>
-            <div style={{
-              fontSize: 'var(--font-xs)',
-              color: 'var(--gray-600)'
-            }}>
-              Baths
-            </div>
+            <div style={{ fontSize: 'var(--font-xs)' }}>Baths</div>
           </div>
           <div>
-            <div style={{
-              fontSize: 'var(--font-lg)',
-              fontWeight: '600',
-              color: 'var(--gray-900)'
-            }}>
+            <div style={{ fontWeight: '600', color: 'var(--gray-900)' }}>
               {sqft.toLocaleString()}
             </div>
-            <div style={{
-              fontSize: 'var(--font-xs)',
-              color: 'var(--gray-600)'
-            }}>
-              Sq Ft
-            </div>
+            <div style={{ fontSize: 'var(--font-xs)' }}>Sq Ft</div>
           </div>
         </div>
 
-        {/* Incentives with Countdown Timer */}
-        <div className="home-card__incentives" style={{
-          marginBottom: 'var(--space-4)'
-        }}>
-          {hasExpiringIncentives && (
-            <div className="incentive-timer" style={{ marginBottom: 'var(--space-2)' }}>
-              ⏰ Incentives Expiring Soon!
-            </div>
-          )}
-          
+        {/* Incentives */}
+        <div style={{ marginBottom: 'var(--space-md)' }}>
           <button
             onClick={() => setShowIncentives(!showIncentives)}
             style={{
@@ -269,7 +212,7 @@ export default function HomeCard({
               textDecorationColor: 'var(--primary)',
               textUnderlineOffset: '2px'
             }}
-            aria-expanded={showIncentives ? 'true' : 'false'}
+            aria-expanded={showIncentives ? "true" : "false"}
             aria-controls="incentives-details"
           >
             {showIncentives ? 'Hide' : 'Show'} Incentive Details
@@ -299,7 +242,7 @@ export default function HomeCard({
                     • ${(incentive.amount / 1000).toFixed(0)}K {incentive.description}
                     {incentive.expiresAt && (
                       <span style={{
-                        color: daysUntilExpiry && daysUntilExpiry <= 3 ? 'var(--error)' : 'var(--warning)',
+                        color: daysUntilExpiry && daysUntilExpiry <= 3 ? 'var(--urgent)' : 'var(--warning)',
                         marginLeft: 'var(--space-2)',
                         fontWeight: daysUntilExpiry && daysUntilExpiry <= 3 ? '600' : '400'
                       }}>
@@ -314,8 +257,8 @@ export default function HomeCard({
         </div>
 
         {/* Move-in Date */}
-        <div className="home-card__movein" style={{
-          marginBottom: 'var(--space-4)',
+        <div style={{
+          marginBottom: 'var(--space-md)',
           textAlign: 'center'
         }}>
           <p style={{
@@ -327,40 +270,26 @@ export default function HomeCard({
           </p>
         </div>
 
-        {/* CTA Button */}
-        <button
-          onClick={handleScheduleTour}
-          disabled={isScheduling}
-          style={{
-            width: '100%',
-            background: isScheduling ? 'var(--gray-400)' : 'var(--accent)',
-            color: 'var(--white)',
-            padding: 'var(--space-3) var(--space-4)',
-            borderRadius: 'var(--radius-md)',
-            fontSize: 'var(--font-base)',
-            fontWeight: '500',
-            border: 'none',
-            cursor: isScheduling ? 'not-allowed' : 'pointer',
-            transition: 'var(--transition-base)',
-            willChange: 'background-color'
-          }}
-          onMouseEnter={(e) => {
-            if (!isScheduling) {
-              e.currentTarget.style.background = 'var(--accent-hover)';
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!isScheduling) {
-              e.currentTarget.style.background = 'var(--accent)';
-            }
-          }}
-          aria-describedby={isScheduling ? 'scheduling-status' : undefined}
-        >
-          {isScheduling ? 'Scheduling...' : 'Schedule Tour'}
-        </button>
+        {/* CTA Buttons */}
+        <div className="property-cta">
+          <button
+            onClick={handleScheduleTour}
+            disabled={isScheduling}
+            className="btn-tour"
+          >
+            {isScheduling ? 'Scheduling...' : 'Schedule Tour'}
+          </button>
+          
+          <button
+            onClick={() => setShowIncentives(!showIncentives)}
+            className="btn-details"
+          >
+            {showIncentives ? 'Hide Details' : 'View Details'}
+          </button>
+        </div>
         
         {isScheduling && (
-          <div id="scheduling-status" className="sr-only">
+          <div className="sr-only">
             Currently processing your tour request
           </div>
         )}

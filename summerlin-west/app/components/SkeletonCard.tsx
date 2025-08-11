@@ -6,12 +6,12 @@ export default function SkeletonCard() {
         className="skeleton" 
         style={{
           position: 'absolute',
-          top: 'var(--space-4)',
-          left: 'var(--space-4)',
+          top: 'var(--space-md)',
+          left: 'var(--space-md)',
           width: '80px',
           height: '32px',
-          borderRadius: 'var(--radius-full)',
-          zIndex: 2
+          borderRadius: '100px',
+          zIndex: 10
         }}
       />
       
@@ -20,12 +20,12 @@ export default function SkeletonCard() {
         className="skeleton" 
         style={{
           position: 'absolute',
-          top: 'var(--space-4)',
-          right: 'var(--space-4)',
+          top: 'var(--space-md)',
+          right: 'var(--space-md)',
           width: '100px',
           height: '24px',
-          borderRadius: 'var(--radius-full)',
-          zIndex: 2
+          borderRadius: '6px',
+          zIndex: 10
         }}
       />
 
@@ -33,20 +33,20 @@ export default function SkeletonCard() {
       <div 
         className="skeleton" 
         style={{
-          height: '280px',
+          aspectRatio: '16/10',
           width: '100%'
         }}
       />
 
       {/* Skeleton Content */}
-      <div className="property-details">
+      <div className="property-content">
         {/* Skeleton Monthly Payment */}
         <div 
           className="skeleton" 
           style={{
             height: '24px',
             width: '150px',
-            marginBottom: 'var(--space-2)'
+            marginBottom: 'var(--space-xs)'
           }}
         />
         
@@ -76,7 +76,7 @@ export default function SkeletonCard() {
           style={{
             height: '14px',
             width: '40%',
-            marginBottom: 'var(--space-4)'
+            marginBottom: 'var(--space-md)'
           }}
         />
 
@@ -95,18 +95,12 @@ export default function SkeletonCard() {
           style={{
             height: '16px',
             width: '90%',
-            marginBottom: 'var(--space-4)'
+            marginBottom: 'var(--space-md)'
           }}
         />
 
         {/* Skeleton Property Details Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 'var(--space-4)',
-          marginBottom: 'var(--space-4)',
-          textAlign: 'center'
-        }}>
+        <div className="property-details">
           {[1, 2, 3].map((i) => (
             <div key={i}>
               <div 
@@ -135,7 +129,7 @@ export default function SkeletonCard() {
           style={{
             height: '18px',
             width: '120px',
-            marginBottom: 'var(--space-4)'
+            marginBottom: 'var(--space-md)'
           }}
         />
 
@@ -145,20 +139,30 @@ export default function SkeletonCard() {
           style={{
             height: '16px',
             width: '140px',
-            margin: '0 auto var(--space-4)',
+            margin: '0 auto var(--space-md)',
             textAlign: 'center'
           }}
         />
 
-        {/* Skeleton CTA Button */}
-        <div 
-          className="skeleton" 
-          style={{
-            height: '48px',
-            width: '100%',
-            borderRadius: 'var(--radius-md)'
-          }}
-        />
+        {/* Skeleton CTA Buttons */}
+        <div className="property-cta">
+          <div 
+            className="skeleton" 
+            style={{
+              height: '48px',
+              flex: 1,
+              borderRadius: '8px'
+            }}
+          />
+          <div 
+            className="skeleton" 
+            style={{
+              height: '48px',
+              flex: 1,
+              borderRadius: '8px'
+            }}
+          />
+        </div>
       </div>
     </article>
   );

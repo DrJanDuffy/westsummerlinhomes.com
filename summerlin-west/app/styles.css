@@ -1,0 +1,439 @@
+/* SummerlinWestHomes.com - High-Conversion CSS */
+/* Target: < 30KB minified, focused on 15 homes tracker */
+
+/* 1. VARIABLES - Simplified & Conversion-Focused */
+:root {
+  /* Core Colors - Trust & Action */
+  --primary: #0A2540;      /* Deep navy for trust */
+  --accent: #FF6B35;        /* Orange for CTAs - high contrast */
+  --success: #00D924;       /* Green for savings */
+  --urgent: #FF3366;        /* Red for expiring deals */
+  
+  /* Grays - Simplified */
+  --white: #FFFFFF;
+  --gray-50: #FAFAFA;
+  --gray-100: #F4F4F5;
+  --gray-200: #E4E4E7;
+  --gray-400: #A1A1AA;
+  --gray-600: #52525B;
+  --gray-900: #18181B;
+  
+  /* Spacing - Use everywhere */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Shadows - Minimal */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+/* 2. RESET - Minimal & Fast */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-display: swap;
+  color: var(--gray-900);
+  background: var(--gray-50);
+  line-height: 1.6;
+}
+
+/* 3. TYPOGRAPHY - System Fonts Only */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--primary);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
+
+p { margin-bottom: var(--space-md); }
+
+/* 4. LAYOUT - Mobile-First */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* 5. HEADER - Sticky & Simple */
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: var(--space-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* 6. HERO SECTION - Simplified & Focused */
+.hero {
+  background: var(--white);
+  padding: var(--space-3xl) 0 var(--space-xl);
+  text-align: center;
+  min-height: auto;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--primary);
+  margin-bottom: var(--space-md);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--gray-600);
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+/* Key metric bar */
+.hero-metrics {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.metric-label {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 7. REAL SCOUT SECTIONS */
+.search-section {
+  background: var(--gray-50);
+  padding: var(--space-2xl) 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.listings-section {
+  background: var(--white);
+  padding: var(--space-2xl) 0;
+}
+
+/* RealScout Widget Customization */
+realscout-advanced-search,
+realscout-office-listings {
+  --rs-primary-color: var(--primary);
+  --rs-accent-color: var(--accent);
+  --rs-border-color: var(--gray-200);
+  --rs-background-color: var(--white);
+  --rs-text-color: var(--gray-900);
+  --rs-button-background: var(--accent);
+  --rs-button-text: var(--white);
+  --rs-button-hover: #E55A2B;
+}
+
+/* 8. PROPERTIES GRID - Conversion-Focused */
+.properties-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  padding: var(--space-xl);
+}
+
+.property-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  contain: layout style paint;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* True Cost Badge - Make it HUGE */
+.true-cost-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  background: var(--white);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 100px;
+  box-shadow: var(--shadow-md);
+  z-index: 10;
+}
+
+.true-cost-value {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.true-cost-label {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  text-transform: uppercase;
+}
+
+/* Savings indicator */
+.savings-badge {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: var(--success);
+  color: var(--white);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+/* Incentive timer */
+.incentive-timer {
+  background: var(--urgent);
+  color: var(--white);
+  padding: var(--space-xs) var(--space-sm);
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.property-image {
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  width: 100%;
+}
+
+.property-content {
+  padding: var(--space-lg);
+}
+
+.property-monthly {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--space-xs);
+}
+
+.property-monthly-label {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.property-details {
+  display: flex;
+  gap: var(--space-md);
+  margin: var(--space-md) 0;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.property-cta {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.btn-tour {
+  flex: 1;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-tour:hover {
+  background: #E55A2B;
+}
+
+.btn-details {
+  flex: 1;
+  background: var(--gray-100);
+  color: var(--gray-900);
+  border: 1px solid var(--gray-200);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-details:hover {
+  background: var(--gray-200);
+}
+
+/* 9. CONVERSION-FOCUSED ELEMENTS */
+/* Sticky CTA bar */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: var(--space-md);
+  display: flex;
+  gap: var(--space-md);
+  z-index: 90;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+}
+
+.sticky-cta-button {
+  flex: 1;
+  background: var(--accent);
+  color: var(--white);
+  padding: var(--space-md);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Urgency indicators */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.urgent {
+  animation: pulse 2s infinite;
+}
+
+/* Trust badges */
+.trust-bar {
+  background: var(--gray-50);
+  padding: var(--space-sm) 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+/* Live counter */
+.live-counter {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: var(--white);
+  border: 2px solid var(--accent);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 100px;
+  font-weight: 700;
+  z-index: 80;
+}
+
+.live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--success);
+  border-radius: 50%;
+  margin-right: 8px;
+  animation: pulse 2s infinite;
+}
+
+/* 10. RESPONSIVE DESIGN - Mobile-First */
+/* Tablet and up */
+@media (min-width: 768px) {
+  .properties-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-metrics {
+    gap: var(--space-3xl);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .properties-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large screens - single column with horizontal cards */
+@media (min-width: 1440px) {
+  .properties-grid {
+    grid-template-columns: 1fr;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .property-card {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+  }
+  
+  .property-image {
+    aspect-ratio: 1;
+  }
+}
+
+/* 11. UTILITIES - Performance & Conversion */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Print styles */
+@media print {
+  .sticky-cta,
+  .live-counter {
+    display: none !important;
+  }
+}
