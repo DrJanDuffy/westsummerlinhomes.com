@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Janet Duffy - Premium Real Estate Services</title>
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async></script>
     <style>
         * {
             margin: 0;
@@ -105,6 +106,141 @@
             background: #2980b9;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* RealScout Search Integration */
+        .search-section {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .search-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-container h3 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .realscout-search-container {
+            width: 100% !important;
+        }
+
+        realscout-advanced-search {
+            --rs-as-button-text-color: #ffffff;
+            --rs-as-background-color: transparent;
+            --rs-as-button-color: #3498db;
+            --rs-as-widget-width: 100% !important;
+            --rs-as-border-radius: 0.5rem;
+            --rs-as-font-family: Arial, sans-serif;
+            --rs-as-input-height: 48px;
+            --rs-as-button-hover-color: #2980b9;
+        }
+
+        realscout-advanced-search input {
+            border: 1px solid #D1D5DB !important;
+            border-radius: 0.5rem !important;
+            padding: 0.75rem !important;
+            font-size: 1rem !important;
+        }
+
+        realscout-advanced-search button {
+            background-color: #3498db !important;
+            border-radius: 0.5rem !important;
+            font-weight: 500 !important;
+            transition: background-color 0.2s !important;
+        }
+
+        realscout-advanced-search button:hover {
+            background-color: #2980b9 !important;
+        }
+
+        .search-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        /* Market Statistics Section */
+        .market-stats {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .stat-change.positive {
+            color: #10b981;
+        }
+
+        .stat-change.negative {
+            color: #ef4444;
+        }
+
+        .stat-change.neutral {
+            color: #f59e0b;
         }
 
         /* Sections */
@@ -232,6 +368,31 @@
             justify-content: center;
             color: white;
             font-size: 1.2rem;
+            position: relative;
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #e74c3c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .property-time {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .property-details {
@@ -261,6 +422,111 @@
             padding: 5px 10px;
             border-radius: 15px;
             font-size: 0.9rem;
+        }
+
+        .property-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            flex: 1;
+            background: #3498db;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            flex: 1;
+            background: #ecf0f1;
+            color: #6b7280;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        /* Neighborhoods Section */
+        .neighborhoods {
+            background: white;
+        }
+
+        .neighborhoods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .neighborhood-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .neighborhood-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .neighborhood-image {
+            height: 200px;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .neighborhood-info {
+            padding: 1.5rem;
+        }
+
+        .neighborhood-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .neighborhood-description {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .neighborhood-price {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .neighborhood-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .neighborhood-tag {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
         }
 
         /* Testimonials */
@@ -375,6 +641,14 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .search-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Smooth scrolling */
@@ -401,9 +675,11 @@
             <div class="logo">Dr. Janet Duffy</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#search">Search</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#properties">Properties</a></li>
+                <li><a href="#neighborhoods">Neighborhoods</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -415,7 +691,60 @@
             <div class="hero-content">
                 <h1>Your Dream Home Awaits</h1>
                 <p>Experience premium real estate services with Dr. Janet Duffy - where expertise meets excellence in every transaction.</p>
-                <a href="#contact" class="cta-button">Start Your Journey</a>
+                <a href="#search" class="cta-button">Start Your Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="search" class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <h3>Find Your Perfect Home</h3>
+                <div class="realscout-search-container">
+                    <realscout-advanced-search agent-encoded-id="QWdlbnQtMjI1MDUw"></realscout-advanced-search>
+                </div>
+                <div class="search-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Open Houses</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">Avg Days</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="market-stats">
+        <div class="container">
+            <h2 class="section-title">Market Insights</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">$875K</div>
+                    <div class="stat-label">Median Price</div>
+                    <div class="stat-change positive">↑ 5.2% vs last month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">14</div>
+                    <div class="stat-label">Avg Days on Market</div>
+                    <div class="stat-change positive">↓ 3 days vs last month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">156</div>
+                    <div class="stat-label">Active Listings</div>
+                    <div class="stat-change neutral">↔ Stable inventory</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">List to Sale Ratio</div>
+                    <div class="stat-change positive">↑ 2% vs last month</div>
+                </div>
             </div>
         </div>
     </section>
@@ -485,7 +814,11 @@
             <h2 class="section-title fade-in">Featured Properties</h2>
             <div class="properties-grid fade-in">
                 <div class="property-card">
-                    <div class="property-image">🏡 Beautiful Family Home</div>
+                    <div class="property-image">
+                        <div class="property-badge">New This Weekend!</div>
+                        <div class="property-time">Saturday 1-4 PM</div>
+                        🏡 Beautiful Family Home
+                    </div>
                     <div class="property-details">
                         <div class="property-price">$650,000</div>
                         <div class="property-address">123 Maple Street, Downtown</div>
@@ -495,10 +828,18 @@
                             <span class="feature">2,400 sq ft</span>
                         </div>
                         <p>Stunning colonial home in prime location with modern updates and beautiful landscaping.</p>
+                        <div class="property-actions">
+                            <button class="btn-primary">Schedule Tour</button>
+                            <button class="btn-secondary">Get Directions</button>
+                        </div>
                     </div>
                 </div>
                 <div class="property-card">
-                    <div class="property-image">🏢 Luxury Condo</div>
+                    <div class="property-image">
+                        <div class="property-badge">New This Weekend!</div>
+                        <div class="property-time">Sunday 12-3 PM</div>
+                        🏢 Luxury Condo
+                    </div>
                     <div class="property-details">
                         <div class="property-price">$425,000</div>
                         <div class="property-address">456 Ocean View Drive</div>
@@ -508,10 +849,18 @@
                             <span class="feature">1,200 sq ft</span>
                         </div>
                         <p>Modern waterfront condo with panoramic views and premium amenities.</p>
+                        <div class="property-actions">
+                            <button class="btn-primary">Schedule Tour</button>
+                            <button class="btn-secondary">Get Directions</button>
+                        </div>
                     </div>
                 </div>
                 <div class="property-card">
-                    <div class="property-image">🏘️ Investment Opportunity</div>
+                    <div class="property-image">
+                        <div class="property-badge">New This Weekend!</div>
+                        <div class="property-time">Saturday 10-1 PM</div>
+                        🏘️ Investment Opportunity
+                    </div>
                     <div class="property-details">
                         <div class="property-price">$320,000</div>
                         <div class="property-address">789 Pine Valley Road</div>
@@ -521,6 +870,57 @@
                             <span class="feature">1,800 sq ft</span>
                         </div>
                         <p>Great investment property in growing neighborhood with excellent rental potential.</p>
+                        <div class="property-actions">
+                            <button class="btn-primary">Schedule Tour</button>
+                            <button class="btn-secondary">Get Directions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="neighborhoods" class="neighborhoods">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Neighborhoods</h2>
+            <div class="neighborhoods-grid fade-in">
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">🏌️ Red Rock Country Club</div>
+                    <div class="neighborhood-info">
+                        <h4 class="neighborhood-name">Red Rock Country Club</h4>
+                        <p class="neighborhood-description">Championship golf course living with resort-style amenities</p>
+                        <p class="neighborhood-price">$800K - $3M</p>
+                        <div class="neighborhood-tags">
+                            <span class="neighborhood-tag">Golf course</span>
+                            <span class="neighborhood-tag">Country club</span>
+                            <span class="neighborhood-tag">Tennis</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">🏔️ The Ridges</div>
+                    <div class="neighborhood-info">
+                        <h4 class="neighborhood-name">The Ridges</h4>
+                        <p class="neighborhood-description">Luxury mountain view homes with premium amenities</p>
+                        <p class="neighborhood-price">$1.2M - $5M</p>
+                        <div class="neighborhood-tags">
+                            <span class="neighborhood-tag">Mountain views</span>
+                            <span class="neighborhood-tag">Luxury</span>
+                            <span class="neighborhood-tag">Privacy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">🏙️ Summerlin Centre</div>
+                    <div class="neighborhood-info">
+                        <h4 class="neighborhood-name">Summerlin Centre</h4>
+                        <p class="neighborhood-description">Urban living with shopping, dining, and entertainment</p>
+                        <p class="neighborhood-price">$400K - $1.2M</p>
+                        <div class="neighborhood-tags">
+                            <span class="neighborhood-tag">Urban</span>
+                            <span class="neighborhood-tag">Shopping</span>
+                            <span class="neighborhood-tag">Entertainment</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -651,6 +1051,17 @@
             } else {
                 header.style.background = 'linear-gradient(135deg, #2c3e50 0%, #34495e 100%)';
             }
+        });
+
+        // Initialize RealScout components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for RealScout components to load
+            setTimeout(() => {
+                const searchComponent = document.querySelector('realscout-advanced-search');
+                if (searchComponent) {
+                    searchComponent.style.opacity = '1';
+                }
+            }, 1000);
         });
     </script>
 </body>
