@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Janet Duffy - Premium Real Estate Services</title>
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async></script>
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+    <style>
+      realscout-office-listings {
+        --rs-listing-divider-color: rgb(101, 141, 172);
+        width: 100%;
+      }
+    </style>
     <style>
         * {
             margin: 0;
@@ -529,6 +535,16 @@
             font-size: 0.8rem;
         }
 
+        /* RealScout Listings Section */
+        .realscout-listings {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .realscout-listings .section-title {
+            margin-bottom: 3rem;
+        }
+
         /* Testimonials */
         .testimonials-grid {
             display: grid;
@@ -675,13 +691,12 @@
             <div class="logo">Dr. Janet Duffy</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#search">Search</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#properties">Properties</a></li>
-                <li><a href="#neighborhoods">Neighborhoods</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="neighborhoods.html">Neighborhoods</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -805,6 +820,15 @@
                     <h3>Legal Consultation</h3>
                     <p>Navigate complex real estate transactions with confidence, backed by professional expertise and attention to detail.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="realscout-listings">
+        <div class="container">
+            <h2 class="section-title fade-in">Current Listings</h2>
+            <div class="fade-in">
+                <realscout-office-listings agent-encoded-id="QWdlbnQtMjI1MDUw" sort-order="STATUS_AND_SIGNIFICANT_CHANGE" listing-status="For Sale" property-types="SFR,MF" price-min="600000" price-max="750000"></realscout-office-listings>
             </div>
         </div>
     </section>
